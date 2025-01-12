@@ -1,11 +1,12 @@
-package com.majesty.shopbackend.service.Product;
+package com.majesty.shopbackend.service.product;
 
 import java.util.List;
 import com.majesty.shopbackend.model.Product;
+import com.majesty.shopbackend.request.AddProductRequest;
 
 public interface IProductService {
 
-    Product addProduct(Product product);
+    Product addProduct(AddProductRequest product);
 
     Product getProductById(Long id);
 
