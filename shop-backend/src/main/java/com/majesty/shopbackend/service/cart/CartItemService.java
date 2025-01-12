@@ -8,6 +8,8 @@ import com.majesty.shopbackend.exceptions.ResourceNotFoundException;
 import com.majesty.shopbackend.model.Cart;
 import com.majesty.shopbackend.model.CartItem;
 import com.majesty.shopbackend.model.Product;
+import com.majesty.shopbackend.repository.CartItemRepository;
+import com.majesty.shopbackend.repository.CartRepository;
 import com.majesty.shopbackend.service.product.IProductService;
 
 import lombok.RequiredArgsConstructor;
