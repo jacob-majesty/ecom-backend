@@ -1,8 +1,11 @@
 package com.majesty.shopbackend.service.product;
 
 import java.util.List;
+
+import com.majesty.shopbackend.dto.ProductDto;
 import com.majesty.shopbackend.model.Product;
 import com.majesty.shopbackend.request.AddProductRequest;
+import com.majesty.shopbackend.request.ProductUpdateRequest;
 
 public interface IProductService {
 
@@ -12,7 +15,7 @@ public interface IProductService {
 
     void deleteProductById(Long id);
 
-    Product updateProduct(Product product, Long productId);
+    Product updateProduct(ProductUpdateRequest product, Long productId);
 
     List<Product> getAllProducts();
 
@@ -28,6 +31,8 @@ public interface IProductService {
 
     Long countProductsByBrandAndName(String brand, String name);
 
-    List<Product> getConvertedProducts(List<Product> products);
+    List<ProductDto> getConvertedProducts(List<Product> products);
+
+    ProductDto convertToDto(Product product);
 
 }

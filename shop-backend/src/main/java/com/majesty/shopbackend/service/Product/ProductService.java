@@ -2,37 +2,31 @@ package com.majesty.shopbackend.service.product;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import com.majesty.shopbackend.exceptions.ResourceNotFoundException;
 import com.majesty.shopbackend.model.Category;
 import com.majesty.shopbackend.model.Image;
 import com.majesty.shopbackend.model.Product;
 import com.majesty.shopbackend.repository.CategoryRepository;
-import com.majesty.shopbackend.model.Product;
+import com.majesty.shopbackend.repository.ImageRepository;
+import com.majesty.shopbackend.dto.*;
 import com.majesty.shopbackend.repository.ProductRepository;
 import com.majesty.shopbackend.request.AddProductRequest;
 import com.majesty.shopbackend.request.ProductUpdateRequest;
-import com.majesty.shopbackend.request.ProductUpdateRequest;
-import com.majesty.shopbackend.model.Product;
-import com.majesty.shopbackend.repository.ProductRepository;
-
 import lombok.RequiredArgsConstructor;
+import com.majesty.shopbackend.service.product.ProductService;
 
-@Ser
-@RequiredArgsConstru
-pu
+@Service
+@RequiredArgsConstructor
+public class ProductService implements IProductService {
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+    private final ModelMapper modelMapper;
+    private final ImageRepository imageRepository;
 
-lic class ProductService implements
-
-private final CategoryRepository categoryRepository;
-private final ModelMapper modelMap
-private final ImageRepository imageRepository;
-
-@Override
-public Product addProduct(AddProductRequest request) {
+    @Override
+    public Product addProduct(AddProductRequest request) {
         // check if the category is found in the DB
         // If Yes, set it as the new product category
         // If No, the save it as a new category
@@ -139,5 +133,8 @@ public Product addProduct(AddProductRequest request) {
         List<Image> images = imageRepository.findByProductId(product.getId());
         List<ImageDto> imageDtos = images.stream()
                 .map(image -> modelMapper.map(image, ImageDto.class))
-     
-   }
+                .toList();
+        productDto.setImages(imageDtos);
+        return productDto;
+    }
+}
