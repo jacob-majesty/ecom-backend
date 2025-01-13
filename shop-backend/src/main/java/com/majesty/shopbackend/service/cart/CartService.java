@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.majesty.shopbackend.exceptions.ResourceNotFoundException;
 import com.majesty.shopbackend.model.Cart;
+import com.majesty.shopbackend.repository.CartItemRepository;
+import com.majesty.shopbackend.repository.CartRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
