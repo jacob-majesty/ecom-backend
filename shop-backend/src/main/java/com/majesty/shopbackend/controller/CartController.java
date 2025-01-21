@@ -14,10 +14,13 @@ import com.majesty.shopbackend.model.Cart;
 import com.majesty.shopbackend.response.ApiResponse;
 import com.majesty.shopbackend.service.cart.ICartService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "Cart API", description = "Operations related to cart")
 @RequestMapping("${api.prefix}/carts")
 public class CartController {
     private final ICartService cartService;
