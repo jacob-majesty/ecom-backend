@@ -1,7 +1,7 @@
 # Shopping Cart Backend with Spring Boot
 
 ## Introduction
-This project is a backend implementation of a shopping cart system using Spring Boot. It provides RESTful APIs to manage products, users, and shopping cart operations such as adding/removing items, viewing the cart, and checking out. The application is designed to be scalable, secure, and easy to integrate with frontend systems or mobile applications.
+This project is a backend implementation of a shopping cart system using Spring Boot. It provides RESTful APIs to manage products, users, and shopping cart operations such as adding/removing items, viewing the cart. The application is designed to be scalable, secure, and easy to integrate with frontend systems or mobile applications.
 
 ## Tech Stack
 - **Framework**: Spring Boot
@@ -9,7 +9,6 @@ This project is a backend implementation of a shopping cart system using Spring 
 - **Database**: MySQL (or any relational database supported by Spring Data JPA)
 - **API Documentation**: Swagger/OpenAPI
 - **Build Tool**: Maven
-- **Authentication**: Spring Security (JWT for stateless authentication)
 - **Version Control**: Git
 
 ## How to Run the Application
