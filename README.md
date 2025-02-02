@@ -9,10 +9,8 @@ This project is a backend implementation of a shopping cart system using Spring 
 - **Database**: MySQL (or any relational database supported by Spring Data JPA)
 - **API Documentation**: Swagger/OpenAPI
 - **Build Tool**: Maven
-- **Testing**: JUnit, Mockito
 - **Authentication**: Spring Security (JWT for stateless authentication)
 - **Version Control**: Git
-- **Containerization**: Docker (optional)
 
 ## How to Run the Application
 
@@ -53,13 +51,4 @@ This project is a backend implementation of a shopping cart system using Spring 
 5. **Access API Documentation**:
    - Open your browser and navigate to `http://localhost:8080/swagger-ui.html` to view the Swagger API documentation.
 
-6. **(Optional) Run with Docker**:
-   - Build the Docker image:
-     ```bash
-     docker build -t shopping-cart-backend .
-     ```
-   - Run the Docker container:
-     ```bash
-     docker run -p 8080:8080 shopping-cart-backend
-     ```
 ---
