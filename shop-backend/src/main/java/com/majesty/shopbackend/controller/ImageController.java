@@ -23,16 +23,21 @@ import com.majesty.shopbackend.exceptions.ResourceNotFoundException;
 import com.majesty.shopbackend.model.Image;
 import com.majesty.shopbackend.response.ApiResponse;
 import com.majesty.shopbackend.service.image.IImageService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "Image", description = "Image API")
 @RequestMapping("${api.prefix}/images")
 public class ImageController {
     private final IImageService imageService;
 
     @PostMapping("/upload")
+    @Operation(summary = "Upload images", description = "Upload images")
     public ResponseEntity<ApiResponse> saveImages(@RequestParam List<MultipartFile> files,
             @RequestParam Long productId) {
         try {
@@ -46,6 +51,7 @@ public class ImageController {
     }
 
     @GetMapping("/image/download/{imageId}")
+    @Operation(summary = "Download image", description = "Download image")
     public ResponseEntity<Resource> downloadImage(@PathVariable Long imageId) {
         try {
             // Fetch the image from the service
@@ -84,6 +90,7 @@ public class ImageController {
     }
 
     @PutMapping("/image/{imageId}/update")
+    @Operation(summary = "Update image", description = "Update image")
     public ResponseEntity<ApiResponse> updateImage(@PathVariable Long imageId, @RequestBody MultipartFile file) {
         try {
             Image image = imageService.getImageById(imageId);
@@ -99,6 +106,7 @@ public class ImageController {
     }
 
     @DeleteMapping("/image/{imageId}/delete")
+    @Operation(summary = "Delete image", description = "Delete image")
     public ResponseEntity<ApiResponse> deleteImage(@PathVariable Long imageId) {
         try {
             Image image = imageService.getImageById(imageId);
