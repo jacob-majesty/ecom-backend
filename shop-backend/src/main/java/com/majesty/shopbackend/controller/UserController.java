@@ -20,15 +20,19 @@ import com.majesty.shopbackend.request.UserUpdateRequest;
 import com.majesty.shopbackend.response.ApiResponse;
 import com.majesty.shopbackend.service.user.IUserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "User Controller", description = "User API")
 @RequestMapping("${api.prefix}/users")
 public class UserController {
     private final IUserService userService;
 
     @GetMapping("/{userId}/user")
+    @Operation(summary = "Get User By Id", description = "Get User By Id")
     public ResponseEntity<ApiResponse> getUserById(@PathVariable Long userId) {
         try {
             User user = userService.getUserById(userId);
@@ -40,6 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
+    @Operation(summary = "Create User", description = "Create User")
     public ResponseEntity<ApiResponse> createUser(@RequestBody CreateUserRequest request) {
         try {
             User user = userService.createUser(request);
@@ -51,6 +56,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/update")
+    @Operation(summary = "Update User", description = "Update User")
     public ResponseEntity<ApiResponse> updateUser(@RequestBody UserUpdateRequest request, @PathVariable Long userId) {
         try {
             User user = userService.updateUser(request, userId);
@@ -62,6 +68,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}/delete")
+    @Operation(summary = "Delete User", description = "Delete User")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId) {
         try {
             userService.deleteUser(userId);
