@@ -14,15 +14,20 @@ import com.majesty.shopbackend.model.Cart;
 import com.majesty.shopbackend.response.ApiResponse;
 import com.majesty.shopbackend.service.cart.ICartService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "Cart API", description = "Operations related to cart")
 @RequestMapping("${api.prefix}/carts")
 public class CartController {
     private final ICartService cartService;
 
     @GetMapping("/{cartId}/my-cart")
+    @Operation(summary = "Get Cart", description = "Get cart by id")
     public ResponseEntity<ApiResponse> getCart(@PathVariable Long cartId) {
         try {
             Cart cart = cartService.getCart(cartId);
@@ -33,6 +38,7 @@ public class CartController {
     }
 
     @DeleteMapping("/{cartId}/clear")
+    @Operation(summary = "Clear Cart", description = "Clear cart by id")
     public ResponseEntity<ApiResponse> clearCart(@PathVariable Long cartId) {
         try {
             cartService.clearCart(cartId);
@@ -43,6 +49,7 @@ public class CartController {
     }
 
     @GetMapping("/{cartId}/cart/total-price")
+    @Operation(summary = "Get Total Price", description = "Get total price of cart by id")
     public ResponseEntity<ApiResponse> getTotalAmount(@PathVariable Long cartId) {
         try {
             BigDecimal totalPrice = cartService.getTotalPrice(cartId);
