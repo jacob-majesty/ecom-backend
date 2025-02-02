@@ -17,15 +17,19 @@ import com.majesty.shopbackend.model.Order;
 import com.majesty.shopbackend.response.ApiResponse;
 import com.majesty.shopbackend.service.order.IOrderService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "Order", description = "Order Management")
 @RequestMapping("${api.prefix}/orders")
 public class OrderController {
     private final IOrderService orderService;
 
     @PostMapping("/order")
+    @Operation(summary = "Place Order", description = "Place Order")
     public ResponseEntity<ApiResponse> createOrder(@RequestParam Long userId) {
         try {
             Order order = orderService.placeOrder(userId);
@@ -37,6 +41,7 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}/order")
+    @Operation(summary = "Get Order", description = "Get Order")
     public ResponseEntity<ApiResponse> getOrderById(@PathVariable Long orderId) {
         try {
             OrderDto order = orderService.getOrder(orderId);
@@ -47,6 +52,7 @@ public class OrderController {
     }
 
     @GetMapping("/{userId}/order")
+    @Operation(summary = "Get User Orders", description = "Get User Orders")
     public ResponseEntity<ApiResponse> getUserOrders(@PathVariable Long userId) {
         try {
             List<OrderDto> order = orderService.getUserOrders(userId);
