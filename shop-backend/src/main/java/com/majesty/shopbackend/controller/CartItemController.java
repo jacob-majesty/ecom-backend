@@ -14,16 +14,20 @@ import com.majesty.shopbackend.response.ApiResponse;
 import com.majesty.shopbackend.service.cart.ICartItemService;
 import com.majesty.shopbackend.service.cart.ICartService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "Cart Item Controller", description = "Cart Item Controller")
 @RequestMapping("${api.prefix}/cartItems")
 public class CartItemController {
     private final ICartItemService cartItemService;
     private final ICartService cartService;
 
     @PostMapping("/item/add")
+    @Operation(summary = "Add Item To Cart", description = "Add item to cart")
     public ResponseEntity<ApiResponse> addItemToCart(@RequestParam(required = false) Long cartId,
             @RequestParam Long productId,
             @RequestParam Integer quantity) {
@@ -39,6 +43,7 @@ public class CartItemController {
     }
 
     @DeleteMapping("/cart/{cartId}/item/{itemId}/remove")
+    @Operation(summary = "Remove Item From Cart", description = "Remove item from cart")
     public ResponseEntity<ApiResponse> removeItemFromCart(@PathVariable Long cartId, @PathVariable Long itemId) {
         try {
             cartItemService.removeItemFromCart(cartId, itemId);
@@ -49,6 +54,7 @@ public class CartItemController {
     }
 
     @PutMapping("/cart/{cartId}/item/{itemId}/update")
+    @Operation(summary = "Update Item Quantity", description = "Update item quantity")
     public ResponseEntity<ApiResponse> updateItemQuantity(@PathVariable Long cartId,
             @PathVariable Long itemId,
             @RequestParam Integer quantity) {
