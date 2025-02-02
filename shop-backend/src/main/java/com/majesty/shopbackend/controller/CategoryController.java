@@ -18,15 +18,19 @@ import com.majesty.shopbackend.model.Category;
 import com.majesty.shopbackend.response.ApiResponse;
 import com.majesty.shopbackend.service.category.ICategoryService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "category", description = "The category API")
 @RequestMapping("${api.prefix}/categories")
 public class CategoryController {
     private final ICategoryService categoryService;
 
     @GetMapping("/all")
+    @Operation(summary = "Get all categories", description = "Get all categories")
     public ResponseEntity<ApiResponse> getAllCategories() {
         try {
             List<Category> categories = categoryService.getAllCategories();
@@ -38,6 +42,7 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
+    @Operation(summary = "Add category", description = "Add category")
     public ResponseEntity<ApiResponse> addCategory(@RequestBody Category name) {
         try {
             Category theCategory = categoryService.addCategory(name);
@@ -48,6 +53,7 @@ public class CategoryController {
     }
 
     @GetMapping("/category/{id}/category")
+    @Operation(summary = "Get category by id", description = "Get category by id")
     public ResponseEntity<ApiResponse> getCategoryById(@PathVariable Long id) {
         try {
             Category theCategory = categoryService.getCategoryById(id);
@@ -58,6 +64,7 @@ public class CategoryController {
     }
 
     @GetMapping("/category/{name}/category")
+    @Operation(summary = "Get category by name", description = "Get category by name")
     public ResponseEntity<ApiResponse> getCategoryByName(@PathVariable String name) {
         try {
             Category theCategory = categoryService.getCategoryByName(name);
@@ -68,6 +75,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/category/{id}/delete")
+    @Operation(summary = "Delete category by id", description = "Delete category by id")
     public ResponseEntity<ApiResponse> deleteCategory(@PathVariable Long id) {
         try {
             categoryService.deleteCategoryById(id);
@@ -78,6 +86,7 @@ public class CategoryController {
     }
 
     @PutMapping("/category/{id}/update")
+    @Operation(summary = "Update category", description = "Update category")
     public ResponseEntity<ApiResponse> updateCategory(@PathVariable Long id, @RequestBody Category category) {
         try {
             Category updatedCategory = categoryService.updateCategory(category, id);
